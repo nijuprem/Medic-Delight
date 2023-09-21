@@ -36,6 +36,7 @@ const Register = () => {
             <Input
               type="name"
               name="name"
+              id="register_name"
               placeholder="Your Name"
               onChange={formik.handleChange}
               value={formik.values.name}
@@ -43,6 +44,7 @@ const Register = () => {
             <FormLabel mt={4}>Email</FormLabel>
             <Input
               type="email"
+              id="register_email"
               name="email"
               placeholder="Email"
               onChange={formik.handleChange}
@@ -51,6 +53,7 @@ const Register = () => {
             <FormLabel mt={4}>Password</FormLabel>
             <Input
               type="password"
+              id="register_password"
               name="password"
               placeholder="Password"
               onChange={formik.handleChange}
@@ -59,6 +62,7 @@ const Register = () => {
             <FormLabel mt={4}>Re-enter Password</FormLabel>
             <Input
               type="password"
+              id="register_secondPassword"
               name="secondPassword"
               placeholder="Password"
               onChange={formik.handleChange}
