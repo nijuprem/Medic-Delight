@@ -13,10 +13,6 @@ const userSchema = mongoose.Schema({
     type: String,
     required: [true, "password is required"],
   },
-  secondpassword: {
-    type: String,
-    required: [true, "password is required"],
-  },
 });
 
 const userModel = mongoose.model("user", userSchema);
