@@ -9,17 +9,35 @@ import {
   Heading,
   Center,
 } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { message } from "antd";
+import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
+import axios from "axios";
 
 const Login = () => {
+  const navigate = useNavigate();
+
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
     },
-    onSubmit: (values) => {
-      console.log(values);
+    onSubmit: async (values) => {
+      try {
+        const { data } = await axios.post(
+          "http://localhost:8080/api/v1/user/login",
+          values
+        );
+        if (data.success) {
+          localStorage.setItem("token", data.token);
+          message.success("Logged In Successfully");
+          navigate("/");
+        } else {
+          message.error(data?.message);
+        }
+      } catch (error) {
+        console.log(`Something went wrong`);
+      }
     },
   });
 
