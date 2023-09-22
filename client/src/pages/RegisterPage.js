@@ -9,6 +9,7 @@ import {
   Heading,
   Center,
 } from "@chakra-ui/react";
+import { message } from "antd";
 import { useNavigate, Link } from "react-router-dom";
 import { useFormik } from "formik";
 import axios from "axios";
@@ -25,12 +26,26 @@ const Register = () => {
     },
     onSubmit: async (values) => {
       try {
-        const { data } = await axios.post("/api/v1/user/register", values);
-        if (data.success) {
-          alert.success("Registered Successfully");
+        console.log(values);
+        // const res = await axios({
+        //   method: "post",
+        //   url: "http://localhost:8080/api/v1/user/register",
+        //   data: values,
+        // }).then((apiResponse) => {
+        //   console.log(`From axiios ${values}`);
+        //   const products = apiResponse.data;
+        //   res.json(products);
+        // });
+
+        const res = await axios.post(
+          "http://localhost:8080/api/v1/user/register",
+          values
+        );
+        if (res.data.success) {
+          message.success("Registered Successfully");
           navigate("/login");
         } else {
-          alert.error(data?.message);
+          message.error(res.data?.message);
         }
       } catch (error) {
         console.log(`Something went wrong`);

@@ -3,14 +3,17 @@ const express = require("express");
 const color = require("colors");
 const morgan = require("morgan");
 const connectDB = require("./config/db");
+const cors = require("cors");
 
 const app = express();
+app.use(cors());
 
 // DB connection
 connectDB();
 
 // middlewares
 app.use(express.json());
+app.use(express.urlencoded());
 app.use(morgan("dev"));
 
 // routes
