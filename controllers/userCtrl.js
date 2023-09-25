@@ -95,7 +95,7 @@ const authController = async (req, res) => {
         message: `user not found`,
       });
     } else {
-      console.log(req.body.userId);
+      // console.log(req.body.userId);
       return res.status(200).send({
         success: true,
         message: `auth successfull`,

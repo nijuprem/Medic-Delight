@@ -13,9 +13,12 @@ import { message } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { showLoading, hideLoading } from "../redux/features/alertSlice";
 
 const Login = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const formik = useFormik({
     initialValues: {
@@ -24,10 +27,12 @@ const Login = () => {
     },
     onSubmit: async (values) => {
       try {
+        dispatch(showLoading());
         const { data } = await axios.post(
           "http://localhost:8080/api/v1/user/login",
           values
         );
+        dispatch(hideLoading());
         if (data.success) {
           localStorage.setItem("token", data.token);
           message.success("Logged In Successfully");
@@ -36,6 +41,7 @@ const Login = () => {
           message.error(data?.message);
         }
       } catch (error) {
+        dispatch(hideLoading());
         console.log(`Something went wrong`);
       }
     },

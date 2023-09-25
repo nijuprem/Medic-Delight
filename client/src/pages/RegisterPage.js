@@ -13,9 +13,12 @@ import { message } from "antd";
 import { useNavigate, Link } from "react-router-dom";
 import { useFormik } from "formik";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { showLoading, hideLoading } from "../redux/features/alertSlice";
 
 const Register = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const formik = useFormik({
     initialValues: {
@@ -35,11 +38,12 @@ const Register = () => {
         //   const products = apiResponse.data;
         //   res.json(products);
         // });
-
+        dispatch(showLoading());
         const res = await axios.post(
           "http://localhost:8080/api/v1/user/register",
           values
         );
+        dispatch(hideLoading());
         if (res.data.success) {
           message.success("Registered Successfully");
           navigate("/login");
@@ -47,6 +51,7 @@ const Register = () => {
           message.error(res.data?.message);
         }
       } catch (error) {
+        dispatch(hideLoading());
         console.log(`Something went wrong`);
       }
     },
