@@ -32,6 +32,7 @@ const Login = () => {
           "http://localhost:8080/api/v1/user/login",
           values
         );
+        window.location.reload();
         dispatch(hideLoading());
         if (data.success) {
           localStorage.setItem("token", data.token);

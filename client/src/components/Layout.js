@@ -1,14 +1,26 @@
 import React from "react";
 import { Box, Divider, Flex, HStack, Text } from "@chakra-ui/react";
-import { SidebarMenu } from "../data/data";
-import { Link, useLocation } from "react-router-dom";
+import { AdminMenu, UserMenu } from "../data/data";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { IoIosNotifications } from "react-icons/io";
+import { LuLogOut } from "react-icons/lu";
+import { message } from "antd";
 
 const Layout = ({ children }) => {
   const { user } = useSelector((state) => state.user);
 
   const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.clear();
+    message.success("Logged Out Successfully");
+    navigate("/login");
+  };
+
+  const SidebarMenu = user?.isAdmin ? AdminMenu : UserMenu;
+
   return (
     <>
       <Box minH={"100%"}>
@@ -45,6 +57,18 @@ const Layout = ({ children }) => {
                   </Box>
                 );
               })}
+              <Box m={"12px 0"} onClick={handleLogout}>
+                <Link to="/login">
+                  <HStack pl={3}>
+                    <Box m={"0.7rem 0"}>
+                      <LuLogOut size={"1.1rem"} />
+                    </Box>
+                    <Box m={"0.7rem 0"}>
+                      <Text fontSize={"1.2rem"}>Logout</Text>
+                    </Box>
+                  </HStack>
+                </Link>
+              </Box>
             </Box>
           </Box>
           <Box w="100%" h="100%">

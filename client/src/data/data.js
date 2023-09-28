@@ -2,9 +2,8 @@ import { BiSolidHome } from "react-icons/bi";
 import { AiOutlineUnorderedList } from "react-icons/ai";
 import { FaUserDoctor } from "react-icons/fa6";
 import { FaUserAlt } from "react-icons/fa";
-import { LuLogOut } from "react-icons/lu";
 
-export const SidebarMenu = [
+export const UserMenu = [
   {
     name: "Home",
     path: "/",
@@ -25,9 +24,28 @@ export const SidebarMenu = [
     path: "/profile",
     icon: <FaUserAlt size={"1.1rem"} />,
   },
+];
+
+//Admin Menu
+export const AdminMenu = [
   {
-    name: "Logout",
-    path: "/logout",
-    icon: <LuLogOut size={"1.1rem"} />,
+    name: "Home",
+    path: "/",
+    icon: <BiSolidHome size={"1.3rem"} />,
+  },
+  {
+    name: "Doctors",
+    path: "/doctors",
+    icon: <FaUserDoctor size={"1.1rem"} />,
+  },
+  {
+    name: "Users",
+    path: "/users",
+    icon: <FaUserAlt size={"1.1rem"} />,
+  },
+  {
+    name: "Profile",
+    path: "/profile",
+    icon: <FaUserAlt size={"1.1rem"} />,
   },
 ];
