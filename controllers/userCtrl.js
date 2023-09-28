@@ -99,10 +99,7 @@ const authController = async (req, res) => {
       return res.status(200).send({
         success: true,
         message: `auth successfull`,
-        data: {
-          name: user.name,
-          email: user.email,
-        },
+        data: user,
       });
     }
   } catch (error) {

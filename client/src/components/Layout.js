@@ -2,8 +2,12 @@ import React from "react";
 import { Box, Divider, Flex, HStack, Text } from "@chakra-ui/react";
 import { SidebarMenu } from "../data/data";
 import { Link, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { IoIosNotifications } from "react-icons/io";
 
 const Layout = ({ children }) => {
+  const { user } = useSelector((state) => state.user);
+
   const location = useLocation();
   return (
     <>
@@ -26,7 +30,7 @@ const Layout = ({ children }) => {
               {SidebarMenu.map(({ name, path, icon }) => {
                 const isActive = location.pathname === path;
                 return (
-                  <Box m={"12px 0"}>
+                  <Box key={name} m={"12px 0"}>
                     <Link to={path}>
                       <HStack
                         pl={3}
@@ -44,8 +48,16 @@ const Layout = ({ children }) => {
             </Box>
           </Box>
           <Box w="100%" h="100%">
-            <Box h="10vh" mb="20px" border="2px solid red">
-              Header
+            <Box h="10vh" mb="20px">
+              <HStack
+                justifyContent={"flex-end"}
+                mr={"10px"}
+                textTransform={"capitalize"}
+                fontSize={"1.2rem"}
+              >
+                <IoIosNotifications size={"1.5rem"} mr={"20px"} />
+                <Link to="/profile">{user?.name}</Link>
+              </HStack>
             </Box>
             <Box border="2px solid red" minH="100%">
               {children}
