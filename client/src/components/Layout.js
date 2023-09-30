@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Divider, Flex, HStack, Text } from "@chakra-ui/react";
+import { Badge, Box, Divider, Flex, HStack, Text } from "@chakra-ui/react";
 import { AdminMenu, UserMenu } from "../data/data";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -80,6 +80,9 @@ const Layout = ({ children }) => {
                 fontSize={"1.2rem"}
               >
                 <IoIosNotifications size={"1.5rem"} mr={"20px"} />
+                <Badge colorScheme="red" ml={"-5px"}>
+                  {user?.notification.length}
+                </Badge>
                 <Link to="/profile">{user?.name}</Link>
               </HStack>
             </Box>
