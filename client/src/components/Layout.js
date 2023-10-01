@@ -79,10 +79,15 @@ const Layout = ({ children }) => {
                 textTransform={"capitalize"}
                 fontSize={"1.2rem"}
               >
-                <IoIosNotifications size={"1.5rem"} mr={"20px"} />
-                <Badge colorScheme="red" ml={"-5px"}>
-                  {user?.notification.length}
-                </Badge>
+                <HStack
+                  cursor={"pointer"}
+                  onClick={() => navigate("/notification")}
+                >
+                  <IoIosNotifications size={"1.5rem"} mr={"20px"} />
+                  <Badge colorScheme="red" ml={"-5px"}>
+                    {user?.notification.length}
+                  </Badge>
+                </HStack>
                 <Link to="/profile">{user?.name}</Link>
               </HStack>
             </Box>

@@ -37,7 +37,6 @@ const ApplyDoctor = () => {
       console.log(error);
       message.error("Somthing Went Wrrong ");
     }
-    console.log(values);
   };
   return (
     <Layout>
