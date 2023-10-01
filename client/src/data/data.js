@@ -35,12 +35,12 @@ export const AdminMenu = [
   },
   {
     name: "Doctors",
-    path: "/doctors",
+    path: "/admin/doctors",
     icon: <FaUserDoctor size={"1.1rem"} />,
   },
   {
     name: "Users",
-    path: "/users",
+    path: "/admin/users",
     icon: <FaUserAlt size={"1.1rem"} />,
   },
   {
