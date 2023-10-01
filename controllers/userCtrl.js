@@ -184,10 +184,33 @@ const getAllNotificationController = async (req, res) => {
   }
 };
 
+const deleteAllNotificationController = async (req, res) => {
+  try {
+    const user = await userModel.findById({ _id: req.body.userId });
+    user.notification = [];
+    user.seenNotification = [];
+    const updatedUser = await user.save();
+    updatedUser.password = undefined;
+    res.status(200).send({
+      message: "User deleted successfully",
+      success: true,
+      data: updatedUser,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error in deleting notification",
+      error,
+    });
+  }
+};
+
 module.exports = {
   loginController,
   registerController,
   authController,
   applyDoctorController,
   getAllNotificationController,
+  deleteAllNotificationController,
 };

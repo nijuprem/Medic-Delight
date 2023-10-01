@@ -46,7 +46,30 @@ const NotificationPage = () => {
       message.error("Something went wrong");
     }
   };
-  const deleteAllRead = () => {};
+  const deleteAllRead = async () => {
+    try {
+      dispatch(showLoading());
+      const { data } = await axios.post(
+        "http://localhost:8080/api/v1/user/delete-all-notification",
+        { userId: user._id },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+      dispatch(hideLoading());
+      if (data.success) {
+        message.success(data.message);
+      } else {
+        message.error(data.message);
+      }
+    } catch (error) {
+      dispatch(hideLoading());
+      console.log(error);
+      message.error("Something went wrong");
+    }
+  };
 
   return (
     <Layout>
@@ -67,6 +90,7 @@ const NotificationPage = () => {
               display={"flex"}
               justifyContent={"flex-end"}
               mb={3}
+              color="#137200"
             >
               Mark as Read
             </Heading>
@@ -92,6 +116,7 @@ const NotificationPage = () => {
               display={"flex"}
               justifyContent={"flex-end"}
               mb={3}
+              color="#ac0000"
             >
               Delete all Read
             </Heading>
