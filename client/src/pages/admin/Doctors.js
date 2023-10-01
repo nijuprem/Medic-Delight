@@ -1,13 +1,84 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../../components/Layout";
-import { Heading } from "@chakra-ui/react";
+import {
+  Heading,
+  TableContainer,
+  Tbody,
+  Td,
+  Th,
+  Thead,
+  Tr,
+  Table,
+  Button,
+} from "@chakra-ui/react";
+import axios from "axios";
 
 const Doctors = () => {
+  const [doctor, setDoctor] = useState([]);
+
+  const getDoctor = async () => {
+    try {
+      const { data } = await axios.get(
+        "http://localhost:8080/api/v1/admin/gelAllDoctors",
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+      if (data.success) {
+        setDoctor(data.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getDoctor();
+  }, []);
+
   return (
     <Layout>
       <Heading as="h3" size="lg" textAlign={"center"}>
         All Doctors
       </Heading>
+      <TableContainer>
+        <Table variant="simple">
+          <Thead>
+            <Tr>
+              <Th>Name</Th>
+              <Th>Status</Th>
+              <Th>Email</Th>
+              <Th>Phone</Th>
+              <Th>Specialization</Th>
+              <Th>Actions</Th>
+            </Tr>
+          </Thead>
+          <Tbody>
+            {doctor.map((docData, index) => (
+              <Tr key={index}>
+                <Td>
+                  {docData.firstName} {docData.lastName}
+                </Td>
+                <Td>{docData.status}</Td>
+                <Td>{docData.email}</Td>
+                <Td>{docData.phone}</Td>
+                <Td>{docData.specialization}</Td>
+                <Td>
+                  {docData.status == "pending" ? (
+                    <Button backgroundColor="#276749" color="white">
+                      Accept
+                    </Button>
+                  ) : (
+                    <Button colorScheme="red">Reject</Button>
+                  )}
+                </Td>
+              </Tr>
+            ))}
+          </Tbody>
+        </Table>
+      </TableContainer>
     </Layout>
   );
 };
