@@ -39,7 +39,7 @@ const Doctors = () => {
     try {
       const { data } = await axios.post(
         "http://localhost:8080/api/v1/admin/changeAccountStatus",
-        { doctorId: docData._id, status },
+        { doctorId: docData._id, status: status },
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -87,7 +87,7 @@ const Doctors = () => {
                 <Td>{docData.phone}</Td>
                 <Td>{docData.specialization}</Td>
                 <Td>
-                  {docData.status == "pending" ? (
+                  {docData.status === "pending" ? (
                     <Button
                       backgroundColor="#276749"
                       color="white"

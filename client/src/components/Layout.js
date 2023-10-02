@@ -1,6 +1,6 @@
 import React from "react";
 import { Badge, Box, Divider, Flex, HStack, Text } from "@chakra-ui/react";
-import { AdminMenu, UserMenu } from "../data/data";
+import { AdminMenu, UserMenu, DoctorMenu } from "../data/data";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { IoIosNotifications } from "react-icons/io";
@@ -19,7 +19,11 @@ const Layout = ({ children }) => {
     navigate("/login");
   };
 
-  const SidebarMenu = user?.isAdmin ? AdminMenu : UserMenu;
+  const SidebarMenu = user?.isAdmin
+    ? AdminMenu
+    : user?.isDoctor
+    ? DoctorMenu
+    : UserMenu;
 
   return (
     <>
@@ -43,7 +47,15 @@ const Layout = ({ children }) => {
                 const isActive = location.pathname === path;
                 return (
                   <Box key={name} m={"12px 0"}>
-                    <Link to={path}>
+                    <Link
+                      to={
+                        user.isDoctor === false
+                          ? path
+                          : name === "Profile"
+                          ? `${path}/${user._id}`
+                          : path
+                      }
+                    >
                       <HStack
                         pl={3}
                         backgroundColor={`${isActive && "#700000"}`}

@@ -45,7 +45,25 @@ export const AdminMenu = [
   },
   {
     name: "Profile",
-    path: "/profile",
+    path: "/doctor/profile",
+    icon: <FaUserAlt size={"1.1rem"} />,
+  },
+];
+
+export const DoctorMenu = [
+  {
+    name: "Home",
+    path: "/",
+    icon: <BiSolidHome size={"1.3rem"} />,
+  },
+  {
+    name: "Appointments",
+    path: "/appointments",
+    icon: <AiOutlineUnorderedList size={"1.3rem"} />,
+  },
+  {
+    name: "Profile",
+    path: "/doctor/profile",
     icon: <FaUserAlt size={"1.1rem"} />,
   },
 ];
