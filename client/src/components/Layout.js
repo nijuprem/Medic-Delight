@@ -49,10 +49,10 @@ const Layout = ({ children }) => {
                   <Box key={name} m={"12px 0"}>
                     <Link
                       to={
-                        user.isDoctor === false
+                        user?.isDoctor === false
                           ? path
                           : name === "Profile"
-                          ? `${path}/${user._id}`
+                          ? `${path}/${user?._id}`
                           : path
                       }
                     >
