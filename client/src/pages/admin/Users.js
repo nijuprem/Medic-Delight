@@ -40,7 +40,7 @@ const Users = () => {
 
   return (
     <Layout>
-      <Heading as="h3" size="lg" textAlign={"center"}>
+      <Heading as="h3" size="lg" textAlign={"center"} mb={5}>
         Users List
       </Heading>
       <TableContainer>

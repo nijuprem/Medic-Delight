@@ -11,6 +11,7 @@ import {
   Table,
   Button,
 } from "@chakra-ui/react";
+import { message } from "antd";
 import axios from "axios";
 
 const Doctors = () => {
@@ -34,13 +35,33 @@ const Doctors = () => {
     }
   };
 
+  const handleAccountStatus = async (docData, status) => {
+    try {
+      const { data } = await axios.post(
+        "http://localhost:8080/api/v1/admin/changeAccountStatus",
+        { doctorId: docData._id, status },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+      if (data.success) {
+        message.success(data.message);
+        window.location.reload();
+      }
+    } catch (error) {
+      message.error("Something went wrong");
+    }
+  };
+
   useEffect(() => {
     getDoctor();
   }, []);
 
   return (
     <Layout>
-      <Heading as="h3" size="lg" textAlign={"center"}>
+      <Heading as="h3" size="lg" textAlign={"center"} mb={5}>
         All Doctors
       </Heading>
       <TableContainer>
@@ -67,7 +88,11 @@ const Doctors = () => {
                 <Td>{docData.specialization}</Td>
                 <Td>
                   {docData.status == "pending" ? (
-                    <Button backgroundColor="#276749" color="white">
+                    <Button
+                      backgroundColor="#276749"
+                      color="white"
+                      onClick={() => handleAccountStatus(docData, "approved")}
+                    >
                       Accept
                     </Button>
                   ) : (
