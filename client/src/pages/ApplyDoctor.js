@@ -23,8 +23,8 @@ const ApplyDoctor = () => {
           ...values,
           userId: user._id,
           timings: [
-            dayjs(values.timings[0].format('HH"mm')),
-            dayjs(values.timings[1].format('HH"mm')),
+            dayjs(values?.timings[0]).format("HH:mm"),
+            dayjs(values?.timings[1]).format("HH:mm"),
           ],
         },
         {
