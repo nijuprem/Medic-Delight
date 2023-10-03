@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { showLoading, hideLoading } from "../redux/features/alertSlice";
 import axios from "axios";
+import dayjs from "dayjs";
 
 const ApplyDoctor = () => {
   const { user } = useSelector((state) => state.user);
@@ -18,7 +19,14 @@ const ApplyDoctor = () => {
       dispatch(showLoading());
       const res = await axios.post(
         "http://localhost:8080/api/v1/user/apply-doctor",
-        { ...values, userId: user._id },
+        {
+          ...values,
+          userId: user._id,
+          timings: [
+            dayjs(values.timings[0].format('HH"mm')),
+            dayjs(values.timings[1].format('HH"mm')),
+          ],
+        },
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
