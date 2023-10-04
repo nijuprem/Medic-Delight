@@ -39,4 +39,29 @@ const updateProfileController = async (req, res) => {
   }
 };
 
-module.exports = { getDoctorInfoController, updateProfileController };
+// Get single doctor for booking
+const getDoctorByIdController = async (req, res) => {
+  try {
+    const doctor = await doctorModel.findById({
+      _id: req.body.docId,
+    });
+    res.status(200).send({
+      message: "Doctor Found",
+      data: doctor,
+      success: true,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      message: "Doctor could not be found",
+      error,
+      success: false,
+    });
+  }
+};
+
+module.exports = {
+  getDoctorInfoController,
+  updateProfileController,
+  getDoctorByIdController,
+};
