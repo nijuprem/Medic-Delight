@@ -76,7 +76,7 @@ const NotificationPage = () => {
   return (
     <Layout>
       <Heading as="h4" size="lg" mb={5} textAlign={"center"}>
-        NotificationPage
+        Notification Page
       </Heading>
       <Tabs variant="enclosed">
         <TabList>

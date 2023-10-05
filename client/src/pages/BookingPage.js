@@ -3,15 +3,20 @@ import Layout from "../components/Layout";
 import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { DatePicker, TimePicker } from "antd";
+import { DatePicker, TimePicker, message } from "antd";
 import dayjs from "dayjs";
+import { useDispatch, useSelector } from "react-redux";
+import { showLoading, hideLoading } from "../redux/features/alertSlice";
 
 const BookingPage = () => {
   const params = useParams();
+  const { user } = useSelector((state) => state.user);
   const [doctor, setDoctor] = useState(null);
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
-  const [isAvailable, setIsAvailable] = useState();
+  // const [isAvailable, setIsAvailable] = useState();
+
+  const dispatch = useDispatch();
 
   const getSingleDoctor = async () => {
     try {
@@ -28,6 +33,36 @@ const BookingPage = () => {
         setDoctor(data.data);
       }
     } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleBooking = async () => {
+    try {
+      dispatch(showLoading());
+      const { data } = await axios.post(
+        "http://localhost:8080/api/v1/user/bookAppointment",
+        {
+          doctorId: params.doctorId,
+          userId: user._id,
+          doctorInfo: doctor,
+          userInfo: user,
+          date: date,
+          time: time,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+      dispatch(hideLoading());
+      if (data.success) {
+        message.success(data.message);
+        setDoctor(data.data);
+      }
+    } catch (error) {
+      dispatch(hideLoading());
       console.log(error);
     }
   };
@@ -68,8 +103,21 @@ const BookingPage = () => {
                 ])
               }
             />
-            <Button backgroundColor="teal.300" mt={3}>
+            <Button
+              backgroundColor="teal.300"
+              mt={3}
+              _hover={{ backgroundColor: "teal.500" }}
+            >
               Check Availability
+            </Button>
+            <Button
+              backgroundColor="gray.800"
+              color="white"
+              mt={3}
+              _hover={{ backgroundColor: "gray.700" }}
+              onClick={handleBooking}
+            >
+              Book Now
             </Button>
           </Flex>
         </Box>
