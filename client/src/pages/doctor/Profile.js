@@ -75,7 +75,9 @@ const Profile = () => {
   }, []);
   return (
     <Layout>
-      <h1>Manage Profile</h1>
+      <Heading as="h1" textAlign={"center"}>
+        Manage Profile
+      </Heading>
       {doctor && (
         <Form
           layout="vertical"
