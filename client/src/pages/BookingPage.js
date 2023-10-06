@@ -14,7 +14,7 @@ const BookingPage = () => {
   const [doctor, setDoctor] = useState(null);
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
-  // const [isAvailable, setIsAvailable] = useState();
+  const [isAvailable, setIsAvailable] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -39,6 +39,10 @@ const BookingPage = () => {
 
   const handleBooking = async () => {
     try {
+      setIsAvailable(true);
+      if (!date && !time) {
+        return alert("Date & Time Required");
+      }
       dispatch(showLoading());
       const { data } = await axios.post(
         "http://localhost:8080/api/v1/user/bookAppointment",
@@ -60,6 +64,32 @@ const BookingPage = () => {
       if (data.success) {
         message.success(data.message);
         setDoctor(data.data);
+      }
+    } catch (error) {
+      dispatch(hideLoading());
+      console.log(error);
+    }
+  };
+
+  const handleAvailability = async () => {
+    try {
+      dispatch(showLoading());
+      const { data } = await axios.post(
+        "http://localhost:8080/api/v1/user/bookingAvailability",
+        { doctorId: params.doctorId, date: date, time: time },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+      dispatch(hideLoading());
+      if (data.success) {
+        setIsAvailable(true);
+        console.log(isAvailable);
+        message.success(data.message);
+      } else {
+        message.error(data.message);
       }
     } catch (error) {
       dispatch(hideLoading());
@@ -91,22 +121,24 @@ const BookingPage = () => {
           <Flex w="25%" flexDir={"column"} mt={3}>
             <DatePicker
               format="DD-MM-YYYY"
-              onChange={(date) => setDate(dayjs(date).format("DD-MM-YYYY"))}
+              onChange={(date) => {
+                // setIsAvailable(false);
+                setDate(date);
+              }}
             />
             <Box mt={3} />
-            <TimePicker.RangePicker
+            <TimePicker
               format="HH:mm"
-              onChange={(time) =>
-                setTime([
-                  dayjs(time[0]).format("HH:mm"),
-                  dayjs(time[1]).format("HH:mm"),
-                ])
-              }
+              onChange={(time) => {
+                // setIsAvailable(false);
+                setTime(time);
+              }}
             />
             <Button
               backgroundColor="teal.300"
               mt={3}
               _hover={{ backgroundColor: "teal.500" }}
+              onClick={handleAvailability}
             >
               Check Availability
             </Button>
