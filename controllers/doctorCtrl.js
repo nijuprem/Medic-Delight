@@ -1,4 +1,6 @@
 const doctorModel = require("../models/doctorModel");
+const appointmentModel = require("../models/appointmentModel");
+const userModel = require("../models/userModel");
 
 const getDoctorInfoController = async (req, res) => {
   try {
@@ -60,8 +62,62 @@ const getDoctorByIdController = async (req, res) => {
   }
 };
 
+const drAppointmentsController = async (req, res) => {
+  try {
+    const doctor = await doctorModel.findOne({
+      userId: req.body.userId,
+    });
+    const appointments = await appointmentModel.find({
+      doctorId: doctor._id,
+    });
+    res.status(200).send({
+      message: "Doctor Appointments fetched successfully",
+      data: appointments,
+      success: true,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      message: "Error in DOc Appointments",
+      error,
+      success: false,
+    });
+  }
+};
+
+const updateStatusController = async (req, res) => {
+  try {
+    const { appointmentsId, status } = req.body;
+    const appointments = await appointmentModel.findByIdAndUpdate(
+      appointmentsId,
+      { status: status }
+    );
+    const user = await userModel.findById({ _id: appointments.userId });
+    const notifications = user.notification;
+    await notifications.push({
+      type: "status-updated",
+      message: `Your Doctor's appointment has been ${status}`,
+      onClickPath: "/drAppointments",
+    });
+    await user.save();
+    res.status(200).send({
+      success: true,
+      message: "Appointment Status Updated",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      error,
+      message: "Error In Updating Status",
+    });
+  }
+};
+
 module.exports = {
   getDoctorInfoController,
   updateProfileController,
   getDoctorByIdController,
+  drAppointmentsController,
+  updateStatusController,
 };

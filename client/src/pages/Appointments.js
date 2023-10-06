@@ -41,7 +41,7 @@ const Appointments = () => {
 
   return (
     <Layout>
-      <Heading as="h1" textAlign={"center"}>
+      <Heading as="h1" textAlign={"center"} mb={3}>
         Appointments List
       </Heading>
       <TableContainer>
@@ -66,9 +66,9 @@ const Appointments = () => {
                   {dayjs(time).format("HH:mm")}
                 </Td>
                 <Td>{status}</Td>
-                <Td>
+                {/* <Td>
                   <Button colorScheme="red">Reject</Button>
-                </Td>
+                </Td> */}
               </Tr>
             ))}
           </Tbody>

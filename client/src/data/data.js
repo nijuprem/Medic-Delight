@@ -58,7 +58,7 @@ export const DoctorMenu = [
   },
   {
     name: "Appointments",
-    path: "/appointments",
+    path: "/drAppointments",
     icon: <AiOutlineUnorderedList size={"1.3rem"} />,
   },
   {
