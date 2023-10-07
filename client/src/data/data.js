@@ -45,7 +45,7 @@ export const AdminMenu = [
   },
   {
     name: "Profile",
-    path: "/doctor/profile",
+    path: "/account",
     icon: <FaUserAlt size={"1.1rem"} />,
   },
 ];

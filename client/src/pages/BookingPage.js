@@ -21,7 +21,7 @@ const BookingPage = () => {
   const getSingleDoctor = async () => {
     try {
       const { data } = await axios.post(
-        "http://localhost:8080/api/v1/doctor/getDoctorById",
+        "/api/v1/doctor/getDoctorById",
         { docId: params.doctorId },
         {
           headers: {
@@ -45,7 +45,7 @@ const BookingPage = () => {
       }
       dispatch(showLoading());
       const { data } = await axios.post(
-        "http://localhost:8080/api/v1/user/bookAppointment",
+        "/api/v1/user/bookAppointment",
         {
           doctorId: params.doctorId,
           userId: user._id,
@@ -75,7 +75,7 @@ const BookingPage = () => {
     try {
       dispatch(showLoading());
       const { data } = await axios.post(
-        "http://localhost:8080/api/v1/user/bookingAvailability",
+        "/api/v1/user/bookingAvailability",
         { doctorId: params.doctorId, date: date, time: time },
         {
           headers: {
@@ -123,7 +123,7 @@ const BookingPage = () => {
               format="DD-MM-YYYY"
               onChange={(date) => {
                 // setIsAvailable(false);
-                setDate(date);
+                setDate(dayjs(date).format("DD-MM-YYYY"));
               }}
             />
             <Box mt={3} />
@@ -131,7 +131,7 @@ const BookingPage = () => {
               format="HH:mm"
               onChange={(time) => {
                 // setIsAvailable(false);
-                setTime(time);
+                setTime(dayjs(time).format("HH:mm"));
               }}
             />
             <Button

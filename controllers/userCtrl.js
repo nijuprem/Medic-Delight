@@ -240,6 +240,11 @@ const bookAppointmentController = async (req, res) => {
     // });
     // req.body.time = parsedTime.toISOString();
     // console.log("Parsed time:", parsedTime);
+    console.log("Time " + req.body.time + " Date " + req.body.date);
+
+    // req.body.date = dayjs(req.body.date, "DD-MM-YYYY").toISOString();
+    req.body.time = dayjs(req.body.time, "HH:mm").toISOString();
+
     req.body.status = "pending";
     const newAppointment = await appointmentModel.create(req.body);
     const user = await userModel.findOne({ _id: req.body.doctorInfo.userId });
@@ -292,6 +297,8 @@ const bookingAvailabilityController = async (req, res) => {
         $lte: toTime,
       },
     });
+
+    console.log(appointments);
 
     if (appointments.length > 0) {
       return res.status(200).send({

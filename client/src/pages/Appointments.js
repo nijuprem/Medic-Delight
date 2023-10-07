@@ -9,7 +9,6 @@ import {
   Thead,
   Tr,
   Table,
-  Button,
 } from "@chakra-ui/react";
 import axios from "axios";
 import dayjs from "dayjs";
@@ -19,14 +18,11 @@ const Appointments = () => {
 
   const getAppointments = async () => {
     try {
-      const { data } = await axios.get(
-        "http://localhost:8080/api/v1/user/userAppointments",
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        }
-      );
+      const { data } = await axios.get("/api/v1/user/userAppointments", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
       if (data.success) {
         setAppointments(data.data);
       }

@@ -18,7 +18,7 @@ const ApplyDoctor = () => {
     try {
       dispatch(showLoading());
       const res = await axios.post(
-        "http://localhost:8080/api/v1/user/apply-doctor",
+        "/api/v1/user/apply-doctor",
         {
           ...values,
           userId: user._id,

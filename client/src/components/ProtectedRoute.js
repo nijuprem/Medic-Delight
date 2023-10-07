@@ -15,7 +15,7 @@ export default function ProtectedRoute({ children }) {
     try {
       dispatch(showLoading());
       const { data } = await axios.post(
-        "http://localhost:8080/api/v1/user/getUserData",
+        "/api/v1/user/getUserData",
         {
           token: localStorage.getItem("token"),
         },

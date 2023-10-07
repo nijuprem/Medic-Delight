@@ -13,11 +13,9 @@ import axios from "axios";
 import { message } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { showLoading, hideLoading } from "../redux/features/alertSlice";
-import { useParams } from "react-router-dom";
 
 const YourAccount = () => {
   const { user } = useSelector((state) => state.user);
-  const params = useParams();
 
   const dispatch = useDispatch();
   const formik = useFormik({
@@ -30,15 +28,11 @@ const YourAccount = () => {
     onSubmit: async (values) => {
       try {
         dispatch(showLoading());
-        const { data } = await axios.post(
-          "http://localhost:8080/api/v1/user/userAccounts",
-          values,
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-          }
-        );
+        const { data } = await axios.post("/api/v1/user/userAccounts", values, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
         dispatch(hideLoading());
         if (data.success) {
           message.success(data.message);

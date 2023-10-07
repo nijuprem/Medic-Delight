@@ -10,14 +10,11 @@ const HomePage = () => {
 
   const getUserData = async () => {
     try {
-      const { data } = await axios.get(
-        "http://localhost:8080/api/v1/user/getAllDoctors",
-        {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
-        }
-      );
+      const { data } = await axios.get("/api/v1/user/getAllDoctors", {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      });
       if (data.success) {
         setDoctor(data.data);
       }

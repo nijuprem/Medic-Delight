@@ -28,10 +28,7 @@ const Login = () => {
     onSubmit: async (values) => {
       try {
         dispatch(showLoading());
-        const { data } = await axios.post(
-          "http://localhost:8080/api/v1/user/login",
-          values
-        );
+        const { data } = await axios.post("/api/v1/user/login", values);
         window.location.reload();
         dispatch(hideLoading());
         if (data.success) {

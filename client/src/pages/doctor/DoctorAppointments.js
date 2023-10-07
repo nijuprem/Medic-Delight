@@ -20,14 +20,11 @@ const DoctorAppointments = () => {
 
   const getAppointments = async () => {
     try {
-      const { data } = await axios.get(
-        "http://localhost:8080/api/v1/doctor/DrAppointments",
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        }
-      );
+      const { data } = await axios.get("/api/v1/doctor/DrAppointments", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
       if (data.success) {
         setAppointments(data.data);
       }
@@ -43,7 +40,7 @@ const DoctorAppointments = () => {
   const handleStatus = async (record, status) => {
     try {
       const { data } = await axios.post(
-        "http://localhost:8080/api/v1/doctor/updateStatus",
+        "/api/v1/doctor/updateStatus",
         { appointmentsId: record._id, status },
         {
           headers: {

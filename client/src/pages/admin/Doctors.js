@@ -19,14 +19,11 @@ const Doctors = () => {
 
   const getDoctor = async () => {
     try {
-      const { data } = await axios.get(
-        "http://localhost:8080/api/v1/admin/gelAllDoctors",
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        }
-      );
+      const { data } = await axios.get("/api/v1/admin/gelAllDoctors", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
       if (data.success) {
         setDoctor(data.data);
       }
@@ -38,7 +35,7 @@ const Doctors = () => {
   const handleAccountStatus = async (docData, status) => {
     try {
       const { data } = await axios.post(
-        "http://localhost:8080/api/v1/admin/changeAccountStatus",
+        "/api/v1/admin/changeAccountStatus",
         { doctorId: docData._id, status: status },
         {
           headers: {
