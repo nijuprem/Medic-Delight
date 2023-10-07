@@ -31,7 +31,7 @@ const HomePage = () => {
     <>
       <Layout>
         <Heading as="h3" textAlign={"center"}>
-          HomePage
+          Home Page
         </Heading>
         <Row>
           {doctor && doctor.map((doctor) => <DoctorList doctor={doctor} />)}

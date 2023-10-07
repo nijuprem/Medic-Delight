@@ -51,8 +51,11 @@ const YourAccount = () => {
       <Heading as="h1" textAlign={"center"}>
         Your Account
       </Heading>
-      <form onSubmit={formik.handleSubmit}>
-        <FormControl textAlign={"center"}>
+      <form
+        onSubmit={formik.handleSubmit}
+        style={{ display: "flex", justifyContent: "center" }}
+      >
+        <FormControl textAlign={"center"} w={"55%"}>
           <FormLabel mt={4}>Email</FormLabel>
           <Input
             type="email"
@@ -61,6 +64,7 @@ const YourAccount = () => {
             placeholder="Email"
             onChange={formik.handleChange}
             value={formik.values.email}
+            background={"white"}
           />
           <FormLabel mt={4}>Old Password</FormLabel>
           <Input
@@ -70,6 +74,7 @@ const YourAccount = () => {
             placeholder="Old Password"
             onChange={formik.handleChange}
             value={formik.values.oldpassword}
+            background={"white"}
           />
           <FormLabel mt={4}>Password</FormLabel>
           <Input
@@ -79,6 +84,7 @@ const YourAccount = () => {
             placeholder="Password"
             onChange={formik.handleChange}
             value={formik.values.password}
+            background={"white"}
           />
           <FormLabel mt={4}>Re-enter Password</FormLabel>
           <Input
@@ -88,6 +94,7 @@ const YourAccount = () => {
             placeholder="Password"
             onChange={formik.handleChange}
             value={formik.values.secondPassword}
+            background={"white"}
           />
           <Center>
             <Button

@@ -4,7 +4,6 @@ import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { DatePicker, TimePicker, message } from "antd";
-import dayjs from "dayjs";
 import { useDispatch, useSelector } from "react-redux";
 import { showLoading, hideLoading } from "../redux/features/alertSlice";
 
@@ -123,7 +122,7 @@ const BookingPage = () => {
               format="DD-MM-YYYY"
               onChange={(date) => {
                 // setIsAvailable(false);
-                setDate(dayjs(date).format("DD-MM-YYYY"));
+                setDate(date);
               }}
             />
             <Box mt={3} />
@@ -131,7 +130,7 @@ const BookingPage = () => {
               format="HH:mm"
               onChange={(time) => {
                 // setIsAvailable(false);
-                setTime(dayjs(time).format("HH:mm"));
+                setTime(time);
               }}
             />
             <Button

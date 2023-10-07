@@ -7,6 +7,7 @@ const DoctorList = ({ doctor }) => {
   return (
     <>
       <Card
+        boxShadow={"5px 5px 9px black"}
         maxW="sm"
         minW={"23%"}
         m={5}

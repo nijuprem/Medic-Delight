@@ -40,28 +40,28 @@ const Appointments = () => {
       <Heading as="h1" textAlign={"center"} mb={3}>
         Appointments List
       </Heading>
-      <TableContainer>
+      <TableContainer border="2px solid black">
         <Table variant="simple">
           <Thead>
             <Tr>
-              <Th>ID</Th>
-              <Th>Date & Time</Th>
-              <Th>Status</Th>
+              <Th borderColor="black">ID</Th>
+              <Th borderColor="black">Date & Time</Th>
+              <Th borderColor="black">Status</Th>
             </Tr>
           </Thead>
           <Tbody>
             {appointments.map(({ userId, status, date, time }, index) => (
               <Tr key={index}>
-                <Td>{userId}</Td>
+                <Td borderColor="black">{userId}</Td>
                 {/* <Td>
                   {date}
                   {time}
                 </Td> */}
-                <Td>
+                <Td borderColor="black">
                   {dayjs(date).format("DD-MM-YYYY")}{" "}
                   {dayjs(time).format("HH:mm")}
                 </Td>
-                <Td>{status}</Td>
+                <Td borderColor="black">{status}</Td>
                 {/* <Td>
                   <Button colorScheme="red">Reject</Button>
                 </Td> */}

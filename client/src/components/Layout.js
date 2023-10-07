@@ -27,14 +27,14 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      <Box minH={"100%"}>
-        <Flex minH={"100vh"} p={5}>
+      <Box minH={"100%"} backgroundColor={"#e9e9e9"}>
+        <Flex minH={"100vh"}>
           <Box
             minH={"100%"}
             w={"300px"}
-            borderRadius={"5px"}
+            // borderRadius={"5px"}
             backgroundColor={"teal.800"}
-            mr={"20px"}
+            // mr={"20px"}
           >
             <Box color={"white"} m={"10px 0"}>
               <Text fontSize={"1.5rem"} textAlign={"center"}>
@@ -84,10 +84,17 @@ const Layout = ({ children }) => {
             </Box>
           </Box>
           <Box w="100%" h="100%">
-            <Box h="10vh" mb="20px">
+            <Flex
+              justifyContent={"flex-end"}
+              minH={"56px"}
+              maxH={"100vh"}
+              // mb="20px"
+              backgroundColor={"teal.800"}
+              color={"white"}
+            >
               <HStack
                 justifyContent={"flex-end"}
-                mr={"10px"}
+                mr={"20px"}
                 textTransform={"capitalize"}
                 fontSize={"1.2rem"}
               >
@@ -102,8 +109,8 @@ const Layout = ({ children }) => {
                 </HStack>
                 <Link to="/account">{user?.name}</Link>
               </HStack>
-            </Box>
-            <Box border="2px solid red" minH="100%">
+            </Flex>
+            <Box minH="100%" p={5}>
               {children}
             </Box>
           </Box>

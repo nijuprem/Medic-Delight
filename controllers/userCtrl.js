@@ -240,17 +240,17 @@ const bookAppointmentController = async (req, res) => {
     // });
     // req.body.time = parsedTime.toISOString();
     // console.log("Parsed time:", parsedTime);
-    console.log("Time " + req.body.time + " Date " + req.body.date);
-
     // req.body.date = dayjs(req.body.date, "DD-MM-YYYY").toISOString();
-    req.body.time = dayjs(req.body.time, "HH:mm").toISOString();
+    // req.body.time = dayjs(req.body.time, "HH:mm").toISOString();
 
     req.body.status = "pending";
     const newAppointment = await appointmentModel.create(req.body);
     const user = await userModel.findOne({ _id: req.body.doctorInfo.userId });
     user.notification.push({
       type: "New-appointment-request",
-      message: `An Appointment Request from ${req.body.userInfo.name} on ${req.body.date} at ${req.body.time[0]}`,
+      message: `An Appointment Request from ${
+        req.body.userInfo.name
+      } on ${dayjs(req.body.date).format("DD-MM-YYYY")}`,
       onClickPath: "/user/appointments",
     });
     await user.save();
@@ -273,19 +273,19 @@ const bookingAvailabilityController = async (req, res) => {
   try {
     const date = req.body.date;
 
-    const fromTime = dayjs(req.body.time, {
-      format: "HH:mm",
-      locale: "en",
-    });
-    const parsedTime = fromTime.subtract(1, "hours");
-    req.body.time = parsedTime.toISOString();
+    // const fromTime = dayjs(req.body.time, {
+    //   format: "HH:mm",
+    //   locale: "en",
+    // });
+    // const parsedTime = fromTime.subtract(1, "hours");
+    // req.body.time = parsedTime.toISOString();
 
-    const toTime = dayjs(req.body.time, {
-      format: "HH:mm",
-      locale: "en",
-    });
-    const parsedTime2 = toTime.add(1, "hours");
-    req.body.time = parsedTime2.toISOString();
+    // const toTime = dayjs(req.body.time, {
+    //   format: "HH:mm",
+    //   locale: "en",
+    // });
+    // const parsedTime2 = toTime.add(1, "hours");
+    // req.body.time = parsedTime2.toISOString();
 
     const doctorId = req.body.doctorId;
 

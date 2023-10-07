@@ -99,7 +99,7 @@ const DoctorAppointments = () => {
                       </Button>
                       <Button
                         colorScheme="red"
-                        onClick={() => handleStatus(record, "reject")}
+                        onClick={() => handleStatus(record, "rejected")}
                       >
                         Reject
                       </Button>

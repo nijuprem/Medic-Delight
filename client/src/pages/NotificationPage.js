@@ -79,9 +79,9 @@ const NotificationPage = () => {
         Notification Page
       </Heading>
       <Tabs variant="enclosed">
-        <TabList>
-          <Tab>Un-Read</Tab>
-          <Tab>Read</Tab>
+        <TabList borderColor=" black">
+          <Tab borderColor=" black">Un-Read</Tab>
+          <Tab borderColor=" black">Read</Tab>
         </TabList>
         <TabPanels>
           <TabPanel>
@@ -110,7 +110,7 @@ const NotificationPage = () => {
             ))}
           </TabPanel>
 
-          <TabPanel>
+          <TabPanel border="1px solid black">
             <Heading
               as="h5"
               size="md"
