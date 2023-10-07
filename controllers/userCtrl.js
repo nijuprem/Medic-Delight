@@ -354,7 +354,11 @@ const userAccountsController = async (req, res) => {
     const salt = await bcrypt.genSaltSync(10);
     const hashedPassword = bcrypt.hashSync(password, salt);
     req.body.password = hashedPassword;
-
+    const newUser = await userModel.findByIdAndUpdate(
+      { _id: req.body.userId },
+      req.body
+    );
+    await newUser.save();
     res.status(200).send({
       success: true,
       message: "Updated Account Successfully",

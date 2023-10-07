@@ -41,7 +41,7 @@ const YourAccount = () => {
         );
         dispatch(hideLoading());
         if (data.success) {
-          message.success("Updated Successfully");
+          message.success(data.message);
         } else {
           message.error(data.message);
         }
