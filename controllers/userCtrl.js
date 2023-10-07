@@ -334,6 +334,42 @@ const userAppointmentsController = async (req, res) => {
   }
 };
 
+const userAccountsController = async (req, res) => {
+  try {
+    const user = await userModel.findById({ _id: req.body.userId });
+
+    const isMatch = await bcrypt.compare(req.body.oldpassword, user.password);
+    if (!isMatch) {
+      return res.status(200).send({
+        success: false,
+        message: "Old Password Do not match",
+      });
+    } else if (req.body.password !== req.body.secondPassword) {
+      return res.status(200).send({
+        success: false,
+        message: "Password and Confirm Password do not match",
+      });
+    }
+    const password = req.body.password;
+    const salt = await bcrypt.genSaltSync(10);
+    const hashedPassword = bcrypt.hashSync(password, salt);
+    req.body.password = hashedPassword;
+
+    res.status(200).send({
+      success: true,
+      message: "Updated Account Successfully",
+      data: user,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error in updating account",
+      error,
+    });
+  }
+};
+
 module.exports = {
   loginController,
   registerController,
@@ -345,4 +381,5 @@ module.exports = {
   bookAppointmentController,
   bookingAvailabilityController,
   userAppointmentsController,
+  userAccountsController,
 };

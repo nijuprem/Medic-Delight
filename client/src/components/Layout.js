@@ -100,7 +100,7 @@ const Layout = ({ children }) => {
                     {user?.notification.length}
                   </Badge>
                 </HStack>
-                <Link to="/profile">{user?.name}</Link>
+                <Link to="/account">{user?.name}</Link>
               </HStack>
             </Box>
             <Box border="2px solid red" minH="100%">

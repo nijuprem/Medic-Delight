@@ -20,8 +20,8 @@ export const UserMenu = [
     icon: <FaUserDoctor size={"1.1rem"} />,
   },
   {
-    name: "Profile",
-    path: "/profile",
+    name: "Your Account",
+    path: "/account",
     icon: <FaUserAlt size={"1.1rem"} />,
   },
 ];
@@ -64,6 +64,11 @@ export const DoctorMenu = [
   {
     name: "Profile",
     path: "/doctor/profile",
+    icon: <FaUserAlt size={"1.1rem"} />,
+  },
+  {
+    name: "Your Account",
+    path: "/account",
     icon: <FaUserAlt size={"1.1rem"} />,
   },
 ];
