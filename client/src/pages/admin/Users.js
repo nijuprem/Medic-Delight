@@ -37,26 +37,32 @@ const Users = () => {
 
   return (
     <Layout>
-      <Heading as="h3" size="lg" textAlign={"center"} mb={5}>
+      <Heading as="h3" size="lg" textAlign={"center"} mb={5} color="#234E52">
         Users List
       </Heading>
-      <TableContainer>
+      <TableContainer
+        boxShadow={"2px 1px 12px black"}
+        mt={5}
+        border="1px solid black"
+      >
         <Table variant="simple">
           <Thead>
             <Tr>
-              <Th>Name</Th>
-              <Th>Email</Th>
-              <Th>Doctor</Th>
-              <Th>Actions</Th>
+              <Th borderColor={"black"}>Name</Th>
+              <Th borderColor={"black"}>Email</Th>
+              <Th borderColor={"black"}>Doctor</Th>
+              <Th borderColor={"black"}>Actions</Th>
             </Tr>
           </Thead>
           <Tbody>
             {user.map((userData, index) => (
               <Tr key={index}>
-                <Td>{userData.name}</Td>
-                <Td>{userData.email}</Td>
-                <Td>{userData.isDoctor ? "Yes" : "No"}</Td>
-                <Td>
+                <Td borderColor={"black"}>{userData.name}</Td>
+                <Td borderColor={"black"}>{userData.email}</Td>
+                <Td borderColor={"black"}>
+                  {userData.isDoctor ? "Yes" : "No"}
+                </Td>
+                <Td borderColor={"black"}>
                   <Button colorScheme="red">Block</Button>
                 </Td>
               </Tr>

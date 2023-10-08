@@ -37,10 +37,14 @@ const Appointments = () => {
 
   return (
     <Layout>
-      <Heading as="h1" textAlign={"center"} mb={3}>
+      <Heading as="h1" textAlign={"center"} mb={3} color="#234E52">
         Appointments List
       </Heading>
-      <TableContainer border="2px solid black">
+      <TableContainer
+        border="2px solid black"
+        boxShadow={"2px 1px 12px black"}
+        mt={5}
+      >
         <Table variant="simple">
           <Thead>
             <Tr>

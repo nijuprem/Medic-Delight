@@ -60,33 +60,33 @@ const DoctorAppointments = () => {
 
   return (
     <Layout>
-      <Heading as="h1" textAlign={"center"} mb={3}>
+      <Heading as="h1" textAlign={"center"} mb={3} color="#234E52">
         Appointments List
       </Heading>
-      <TableContainer>
-        <Table variant="simple">
+      <TableContainer boxShadow={"2px 1px 12px black"} mt={5}>
+        <Table variant="simple" border={"1px solid black"}>
           <Thead>
             <Tr>
-              <Th>ID</Th>
-              <Th>Date & Time</Th>
-              <Th>Status</Th>
-              <Th>Action</Th>
+              <Th borderColor={"black"}>ID</Th>
+              <Th borderColor={"black"}>Date & Time</Th>
+              <Th borderColor={"black"}>Status</Th>
+              <Th borderColor={"black"}>Action</Th>
             </Tr>
           </Thead>
           <Tbody>
             {appointments.map((record, index) => (
               <Tr key={index}>
-                <Td>{record.userId}</Td>
+                <Td borderColor={"black"}>{record.userId}</Td>
                 {/* <Td>
                       {date}
                       {time}
                     </Td> */}
-                <Td>
+                <Td borderColor={"black"}>
                   {dayjs(record.date).format("DD-MM-YYYY")}{" "}
                   {dayjs(record.time).format("HH:mm")}
                 </Td>
-                <Td>{record.status}</Td>
-                <Td>
+                <Td borderColor={"black"}>{record.status}</Td>
+                <Td borderColor={"black"}>
                   {record.status === "pending" && (
                     <>
                       <Button

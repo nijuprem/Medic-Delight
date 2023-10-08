@@ -251,7 +251,7 @@ const bookAppointmentController = async (req, res) => {
       message: `An Appointment Request from ${
         req.body.userInfo.name
       } on ${dayjs(req.body.date).format("DD-MM-YYYY")}`,
-      onClickPath: "/user/appointments",
+      onClickPath: "/drAppointments",
     });
     await user.save();
     res.status(200).send({
@@ -273,19 +273,19 @@ const bookingAvailabilityController = async (req, res) => {
   try {
     const date = req.body.date;
 
-    // const fromTime = dayjs(req.body.time, {
-    //   format: "HH:mm",
-    //   locale: "en",
-    // });
-    // const parsedTime = fromTime.subtract(1, "hours");
-    // req.body.time = parsedTime.toISOString();
+    const fromTime = dayjs(req.body.time, {
+      format: "HH:mm",
+      locale: "en",
+    });
+    const parsedTime = fromTime.subtract(1, "hours");
+    req.body.time = parsedTime.toISOString();
 
-    // const toTime = dayjs(req.body.time, {
-    //   format: "HH:mm",
-    //   locale: "en",
-    // });
-    // const parsedTime2 = toTime.add(1, "hours");
-    // req.body.time = parsedTime2.toISOString();
+    const toTime = dayjs(req.body.time, {
+      format: "HH:mm",
+      locale: "en",
+    });
+    const parsedTime2 = toTime.add(1, "hours");
+    req.body.time = parsedTime2.toISOString();
 
     const doctorId = req.body.doctorId;
 

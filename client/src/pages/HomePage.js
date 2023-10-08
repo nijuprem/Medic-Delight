@@ -30,7 +30,7 @@ const HomePage = () => {
   return (
     <>
       <Layout>
-        <Heading as="h3" textAlign={"center"}>
+        <Heading as="h3" textAlign={"center"} color="#234E52">
           Home Page
         </Heading>
         <Row>

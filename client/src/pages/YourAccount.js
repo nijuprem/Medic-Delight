@@ -48,14 +48,22 @@ const YourAccount = () => {
 
   return (
     <Layout>
-      <Heading as="h1" textAlign={"center"}>
+      <Heading as="h1" textAlign={"center"} color="#234E52">
         Your Account
       </Heading>
+
       <form
         onSubmit={formik.handleSubmit}
         style={{ display: "flex", justifyContent: "center" }}
       >
-        <FormControl textAlign={"center"} w={"55%"}>
+        <FormControl
+          textAlign={"center"}
+          w={"55%"}
+          boxShadow={"2px 4px 8px black"}
+          p={5}
+          borderRadius={"5px"}
+          mt={5}
+        >
           <FormLabel mt={4}>Email</FormLabel>
           <Input
             type="email"

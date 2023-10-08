@@ -75,7 +75,7 @@ const NotificationPage = () => {
 
   return (
     <Layout>
-      <Heading as="h4" size="lg" mb={5} textAlign={"center"}>
+      <Heading as="h4" size="lg" mb={5} textAlign={"center"} color="#234E52">
         Notification Page
       </Heading>
       <Tabs variant="enclosed">
@@ -83,7 +83,7 @@ const NotificationPage = () => {
           <Tab borderColor=" black">Un-Read</Tab>
           <Tab borderColor=" black">Read</Tab>
         </TabList>
-        <TabPanels>
+        <TabPanels border="1px solid black">
           <TabPanel>
             <Heading
               as="h5"
@@ -100,7 +100,7 @@ const NotificationPage = () => {
               <Card
                 cursor={"pointer"}
                 key={index}
-                onClick={() => navigate(noti.onClickPath)}
+                // onClick={() => navigate(noti.onClickPath)}
                 border="1px solid #E2E8F0"
               >
                 <CardBody>
@@ -110,7 +110,7 @@ const NotificationPage = () => {
             ))}
           </TabPanel>
 
-          <TabPanel border="1px solid black">
+          <TabPanel>
             <Heading
               as="h5"
               size="md"

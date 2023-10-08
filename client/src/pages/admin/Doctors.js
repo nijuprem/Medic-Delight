@@ -58,32 +58,32 @@ const Doctors = () => {
 
   return (
     <Layout>
-      <Heading as="h3" size="lg" textAlign={"center"} mb={5}>
+      <Heading as="h3" size="lg" textAlign={"center"} mb={5} color="#234E52">
         All Doctors
       </Heading>
-      <TableContainer>
+      <TableContainer boxShadow={"2px 1px 12px black"} mt={5}>
         <Table variant="simple">
           <Thead>
             <Tr>
-              <Th>Name</Th>
-              <Th>Status</Th>
-              <Th>Email</Th>
-              <Th>Phone</Th>
-              <Th>Specialization</Th>
-              <Th>Actions</Th>
+              <Th borderColor={"black"}>Name</Th>
+              <Th borderColor={"black"}>Status</Th>
+              <Th borderColor={"black"}>Email</Th>
+              <Th borderColor={"black"}>Phone</Th>
+              <Th borderColor={"black"}>Specialization</Th>
+              <Th borderColor={"black"}>Actions</Th>
             </Tr>
           </Thead>
           <Tbody>
             {doctor.map((docData, index) => (
               <Tr key={index}>
-                <Td>
+                <Td borderColor={"black"}>
                   {docData.firstName} {docData.lastName}
                 </Td>
-                <Td>{docData.status}</Td>
-                <Td>{docData.email}</Td>
-                <Td>{docData.phone}</Td>
-                <Td>{docData.specialization}</Td>
-                <Td>
+                <Td borderColor={"black"}>{docData.status}</Td>
+                <Td borderColor={"black"}>{docData.email}</Td>
+                <Td borderColor={"black"}>{docData.phone}</Td>
+                <Td borderColor={"black"}>{docData.specialization}</Td>
+                <Td borderColor={"black"}>
                   {docData.status === "pending" ? (
                     <Button
                       backgroundColor="#276749"

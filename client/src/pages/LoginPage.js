@@ -48,7 +48,7 @@ const Login = () => {
   return (
     <Flex justifyContent={"center"} height={"auto"} mt={"5%"}>
       <Box w={"34%"} p={5} border={"1px solid black"} borderRadius={"1rem"}>
-        <Heading as="h3" textAlign={"center"}>
+        <Heading as="h3" textAlign={"center"} color="#234E52">
           Login Page
         </Heading>
         <form onSubmit={formik.handleSubmit}>

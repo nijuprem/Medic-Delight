@@ -1,6 +1,16 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../components/Layout";
-import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  ButtonGroup,
+  Card,
+  CardBody,
+  Flex,
+  Heading,
+  Stack,
+  Text,
+} from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { DatePicker, TimePicker, message } from "antd";
@@ -103,55 +113,117 @@ const BookingPage = () => {
 
   return (
     <Layout>
-      <Heading as="h1" textAlign={"center"}>
+      <Heading as="h1" textAlign={"center"} color="#234E52">
         Booking Page
       </Heading>
       {doctor && (
-        <Box p={"1rem"}>
-          <Text size="lg" mt={3}>
-            Dr: {doctor.firstName} {doctor.lastName}
-          </Text>
-          <Text size="lg" mt={3}>
-            Fees: {doctor.feesPerConsultation}
-          </Text>
-          <Text size="lg" mt={3}>
-            Timings: {doctor.timings[0]} to {doctor.timings[1]}
-          </Text>
-          <Flex w="25%" flexDir={"column"} mt={3}>
-            <DatePicker
-              format="DD-MM-YYYY"
-              onChange={(date) => {
-                // setIsAvailable(false);
-                setDate(date);
-              }}
-            />
-            <Box mt={3} />
-            <TimePicker
-              format="HH:mm"
-              onChange={(time) => {
-                // setIsAvailable(false);
-                setTime(time);
-              }}
-            />
-            <Button
-              backgroundColor="teal.300"
-              mt={3}
-              _hover={{ backgroundColor: "teal.500" }}
-              onClick={handleAvailability}
-            >
-              Check Availability
-            </Button>
-            <Button
-              backgroundColor="gray.800"
-              color="white"
-              mt={3}
-              _hover={{ backgroundColor: "gray.700" }}
-              onClick={handleBooking}
-            >
-              Book Now
-            </Button>
-          </Flex>
-        </Box>
+        <Flex justifyContent={"center"} mt={5}>
+          <Card
+            maxW="sm"
+            minW="sm"
+            boxShadow={"5px 5px 9px black"}
+            border="1px solid black"
+            p={5}
+          >
+            <CardBody>
+              <Stack spacing="3">
+                <Heading size="md" textAlign={"center"}>
+                  <b>Dr:</b> {doctor.firstName} {doctor.lastName}
+                </Heading>
+                <Text></Text>
+                <Text fontSize="xl">
+                  <b>Fees:</b> {doctor.feesPerConsultation}
+                </Text>
+                <Text fontSize="xl" mb={2}>
+                  <b>Timings:</b> {doctor.timings[0]} to {doctor.timings[1]}
+                </Text>
+                {/* <Flex w="25%" flexDir={"column"} mt={3}> */}
+                <DatePicker
+                  format="DD-MM-YYYY"
+                  onChange={(date) => {
+                    // setIsAvailable(false);
+                    setDate(date);
+                  }}
+                />
+                <Box mt={1} />
+                <TimePicker
+                  format="HH:mm"
+                  onChange={(time) => {
+                    // setIsAvailable(false);
+                    setTime(time);
+                  }}
+                />
+                {/* </Flex> */}
+              </Stack>
+            </CardBody>
+
+            <ButtonGroup spacing="2" display={"flex"} justifyContent={"center"}>
+              <Button
+                backgroundColor="teal.300"
+                mt={3}
+                _hover={{ backgroundColor: "teal.500" }}
+                onClick={handleAvailability}
+              >
+                Check Availability
+              </Button>
+              <Button
+                backgroundColor="gray.800"
+                color="white"
+                mt={3}
+                _hover={{ backgroundColor: "gray.700" }}
+                onClick={handleBooking}
+              >
+                Book Now
+              </Button>
+            </ButtonGroup>
+          </Card>
+
+          {/* <Box p={"1rem"} border="2px solid red">
+            <Text size="lg" mt={3}>
+              <b>Dr:</b> {doctor.firstName} {doctor.lastName}
+            </Text>
+            <Text size="lg" mt={3}>
+              <b>Fees:</b> {doctor.feesPerConsultation}
+            </Text>
+            <Text size="lg" mt={3}>
+              <b>Timings:</b> {doctor.timings[0]} to {doctor.timings[1]}
+            </Text>
+            <Flex w="25%" flexDir={"column"} mt={3}>
+              <DatePicker
+                format="DD-MM-YYYY"
+                onChange={(date) => {
+                  // setIsAvailable(false);
+                  setDate(date);
+                }}
+              />
+              <Box mt={3} />
+              <TimePicker
+                format="HH:mm"
+                onChange={(time) => {
+                  // setIsAvailable(false);
+                  setTime(time);
+                }}
+              />
+              <Button
+                backgroundColor="teal.300"
+                mt={3}
+                _hover={{ backgroundColor: "teal.500" }}
+                onClick={handleAvailability}
+              >
+                Check Availability
+              </Button>
+              <Button
+                backgroundColor="gray.800"
+                color="white"
+                mt={3}
+                _hover={{ backgroundColor: "gray.700" }}
+                onClick={handleBooking}
+              >
+                Book Now
+              </Button>
+            </Flex>
+          </Box> */}
+        </Flex>
       )}
     </Layout>
   );
