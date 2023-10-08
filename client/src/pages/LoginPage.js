@@ -46,48 +46,75 @@ const Login = () => {
   });
 
   return (
-    <Flex justifyContent={"center"} height={"auto"} mt={"5%"}>
-      <Box w={"34%"} p={5} border={"1px solid black"} borderRadius={"1rem"}>
-        <Heading as="h3" textAlign={"center"} color="#234E52">
-          Login Page
+    <Box backgroundColor={"#e9e9e9"} minH={"100vh"}>
+      <Flex
+        justifyContent={"center"}
+        alignItems={"center"}
+        minH={"70px"}
+        maxH={"100vh"}
+        backgroundColor={"teal.800"}
+        color={"white"}
+      >
+        <Heading
+          fontSize={"1.5rem"}
+          textAlign={"center"}
+          background={"inherit"}
+        >
+          Medic Delight
         </Heading>
-        <form onSubmit={formik.handleSubmit}>
-          <FormControl textAlign={"center"}>
-            <FormLabel mt={4}>Email</FormLabel>
-            <Input
-              type="email"
-              name="email"
-              id="login_email"
-              placeholder="Email"
-              onChange={formik.handleChange}
-              value={formik.values.email}
-            />
-            <FormLabel mt={4}>Password</FormLabel>
-            <Input
-              type="password"
-              id="login_password"
-              name="password"
-              placeholder="Password"
-              onChange={formik.handleChange}
-              value={formik.values.password}
-            />
-            <Center>
-              <Button
-                mt={3}
-                display={"block"}
-                type="submit"
-                background="teal.300"
-              >
-                Submit
-              </Button>
-            </Center>
-            <Box mt={3}>
-              <Link to="/register">Not a user? Register here</Link>
-            </Box>
-          </FormControl>
-        </form>
-      </Box>
-    </Flex>
+      </Flex>
+      <Flex
+        justifyContent={"center"}
+        height={"auto"}
+        mt={"5%"}
+        backgroundColor={"#e9e9e9"}
+      >
+        <Box w={"34%"} p={5} border={"1px solid black"} borderRadius={"1rem"}>
+          <Heading as="h3" textAlign={"center"} color="#234E52">
+            Login Page
+          </Heading>
+          <form onSubmit={formik.handleSubmit}>
+            <FormControl textAlign={"center"}>
+              <FormLabel mt={4}>Email</FormLabel>
+              <Input
+                type="email"
+                name="email"
+                id="login_email"
+                placeholder="Email"
+                onChange={formik.handleChange}
+                value={formik.values.email}
+                background={"white"}
+              />
+              <FormLabel mt={4}>Password</FormLabel>
+              <Input
+                type="password"
+                id="login_password"
+                name="password"
+                placeholder="Password"
+                onChange={formik.handleChange}
+                value={formik.values.password}
+                background={"white"}
+              />
+              <Center>
+                <Button
+                  mt={3}
+                  display={"block"}
+                  type="submit"
+                  background="teal.300"
+                >
+                  Submit
+                </Button>
+              </Center>
+              <Box mt={3}>
+                <Link to="/register">
+                  <b>Not a user? Register here</b>
+                </Link>
+              </Box>
+            </FormControl>
+          </form>
+        </Box>
+      </Flex>
+    </Box>
   );
 };
 
