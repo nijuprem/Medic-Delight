@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { IoIosNotifications } from "react-icons/io";
 import { LuLogOut } from "react-icons/lu";
 import { message } from "antd";
+import axios from 'axios'
 
 const Layout = ({ children }) => {
   const { user } = useSelector((state) => state.user);
@@ -13,10 +14,26 @@ const Layout = ({ children }) => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    try{const {data} = await axios.post('/api/v1/user/logout',{},
+    // {
+    //   headers: {
+    //     'Content-Type': 'application-json',
+    //   },
+    // }
+    )
     localStorage.clear();
-    message.success("Logged Out Successfully");
+    if (data.success) {
+    message.success("Logged Out successfully");
     navigate("/login");
+    }
+    else{
+      message.error(data.message);
+      navigate("/login");
+    }
+  }catch(error){
+      console.log('Error : ', error);
+    }
   };
 
   const SidebarMenu = user?.isAdmin

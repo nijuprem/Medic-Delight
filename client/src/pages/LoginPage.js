@@ -26,6 +26,9 @@ const Login = () => {
       password: "",
     },
     onSubmit: async (values) => {
+
+      
+
       try {
         dispatch(showLoading());
         const { data } = await axios.post("/api/v1/user/login", values);
@@ -40,7 +43,7 @@ const Login = () => {
         }
       } catch (error) {
         dispatch(hideLoading());
-        console.log(`Something went wrong`);
+        // console.log(`Something went wrong`);
       }
     },
   });

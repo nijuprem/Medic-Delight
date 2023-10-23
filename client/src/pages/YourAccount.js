@@ -28,11 +28,13 @@ const YourAccount = () => {
     onSubmit: async (values) => {
       try {
         dispatch(showLoading());
-        const { data } = await axios.post("/api/v1/user/userAccounts", values, {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        });
+        const { data } = await axios.post("/api/v1/user/userAccounts", values, 
+        // {
+        //   headers: {
+        //     'Content-Type': 'application-json',
+        //   },
+        // }
+        );
         dispatch(hideLoading());
         if (data.success) {
           message.success(data.message);
@@ -41,7 +43,7 @@ const YourAccount = () => {
         }
       } catch (error) {
         dispatch(hideLoading());
-        console.log(`Something went wrong`);
+        // console.log(`Something went wrong`);
       }
     },
   });

@@ -34,7 +34,7 @@ const Register = () => {
         //   url: "http://localhost:8080/api/v1/user/register",
         //   data: values,
         // }).then((apiResponse) => {
-        //   console.log(`From axiios ${values}`);
+        //   // console.log(`From axiios ${values}`);
         //   const products = apiResponse.data;
         //   res.json(products);
         // });
@@ -49,7 +49,7 @@ const Register = () => {
         }
       } catch (error) {
         dispatch(hideLoading());
-        console.log(`Something went wrong`);
+        // console.log(`Something went wrong`);
       }
     },
   });

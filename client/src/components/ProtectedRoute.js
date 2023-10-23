@@ -17,13 +17,13 @@ export default function ProtectedRoute({ children }) {
       const { data } = await axios.post(
         "/api/v1/user/getUserData",
         {
-          token: localStorage.getItem("token"),
+          // token: localStorage.getItem("token"),
         },
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        }
+        // {
+        //   headers: {
+        //     Authorization: `Bearer ${localStorage.getItem("token")}`,
+        //   },
+        // }
       );
       dispatch(hideLoading());
 
@@ -36,7 +36,7 @@ export default function ProtectedRoute({ children }) {
     } catch (error) {
       localStorage.clear();
       dispatch(hideLoading());
-      console.log(error);
+      // console.log(error);
     }
   };
 

@@ -11,7 +11,7 @@ const getDoctorInfoController = async (req, res) => {
       message: "Doctor Data fetched successfully",
     });
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.status(500).send({
       success: false,
       error,
@@ -32,7 +32,7 @@ const updateProfileController = async (req, res) => {
       data: doctor,
     });
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.status(500).send({
       message: "Doctor profile update issue",
       error,
@@ -53,7 +53,7 @@ const getDoctorByIdController = async (req, res) => {
       success: true,
     });
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.status(500).send({
       message: "Doctor could not be found",
       error,
@@ -76,7 +76,7 @@ const drAppointmentsController = async (req, res) => {
       success: true,
     });
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.status(500).send({
       message: "Error in DOc Appointments",
       error,
@@ -105,7 +105,7 @@ const updateStatusController = async (req, res) => {
       message: "Appointment Status Updated",
     });
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.status(500).send({
       success: false,
       error,

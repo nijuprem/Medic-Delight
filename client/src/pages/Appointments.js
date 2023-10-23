@@ -18,16 +18,18 @@ const Appointments = () => {
 
   const getAppointments = async () => {
     try {
-      const { data } = await axios.get("/api/v1/user/userAppointments", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
+      const { data } = await axios.get("/api/v1/user/userAppointments", 
+      // {
+      //   headers: {
+      //     Authorization: `Bearer ${localStorage.getItem("token")}`,
+      //   },
+      // }
+      );
       if (data.success) {
         setAppointments(data.data);
       }
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 

@@ -28,11 +28,11 @@ const NotificationPage = () => {
       const { data } = await axios.post(
         "/api/v1/user/get-all-notification",
         { userId: user._id },
-        {
+   /*     {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            'Content-Type': 'application-json',
           },
-        }
+        }*/
       );
       dispatch(hideLoading());
       if (data.success) {
@@ -43,7 +43,7 @@ const NotificationPage = () => {
       }
     } catch (error) {
       dispatch(hideLoading());
-      console.log(error);
+      // console.log(error);
       message.error("Something went wrong");
     }
   };
@@ -53,11 +53,11 @@ const NotificationPage = () => {
       const { data } = await axios.post(
         "/api/v1/user/delete-all-notification",
         { userId: user._id },
-        {
+   /*     {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            'Content-Type': 'application-json',
           },
-        }
+        }*/
       );
       dispatch(hideLoading());
       if (data.success) {
@@ -68,7 +68,7 @@ const NotificationPage = () => {
       }
     } catch (error) {
       dispatch(hideLoading());
-      console.log(error);
+      // console.log(error);
       message.error("Something went wrong");
     }
   };

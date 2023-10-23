@@ -10,16 +10,19 @@ const HomePage = () => {
 
   const getUserData = async () => {
     try {
-      const { data } = await axios.get("/api/v1/user/getAllDoctors", {
+      const { data } = await axios.get("/api/v1/user/getAllDoctors", 
+      {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
-      });
+      }
+      )
+      ;
       if (data.success) {
         setDoctor(data.data);
       }
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 
@@ -34,7 +37,10 @@ const HomePage = () => {
           Home Page
         </Heading>
         <Row>
-          {doctor && doctor.map((doctor) => <DoctorList doctor={doctor} />)}
+          {doctor &&
+            doctor.map((doctor, index) => (
+              <DoctorList key={index} doctor={doctor} />
+            ))}
         </Row>
       </Layout>
     </>

@@ -32,17 +32,17 @@ const BookingPage = () => {
       const { data } = await axios.post(
         "/api/v1/doctor/getDoctorById",
         { docId: params.doctorId },
-        {
+   /*     {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            'Content-Type': 'application-json',
           },
-        }
+        }*/
       );
       if (data.success) {
         setDoctor(data.data);
       }
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 
@@ -63,11 +63,11 @@ const BookingPage = () => {
           date: date,
           time: time,
         },
-        {
+   /*     {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            'Content-Type': 'application-json',
           },
-        }
+        }*/
       );
       dispatch(hideLoading());
       if (data.success) {
@@ -76,7 +76,7 @@ const BookingPage = () => {
       }
     } catch (error) {
       dispatch(hideLoading());
-      console.log(error);
+      // console.log(error);
     }
   };
 
@@ -86,23 +86,23 @@ const BookingPage = () => {
       const { data } = await axios.post(
         "/api/v1/user/bookingAvailability",
         { doctorId: params.doctorId, date: date, time: time },
-        {
+   /*     {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            'Content-Type': 'application-json',
           },
-        }
+        }*/
       );
       dispatch(hideLoading());
       if (data.success) {
         setIsAvailable(true);
-        console.log(isAvailable);
+        // console.log(isAvailable);
         message.success(data.message);
       } else {
         message.error(data.message);
       }
     } catch (error) {
       dispatch(hideLoading());
-      console.log(error);
+      // console.log(error);
     }
   };
 

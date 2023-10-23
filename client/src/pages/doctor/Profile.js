@@ -30,11 +30,11 @@ const Profile = () => {
             dayjs(values?.timings[1]).format("HH:mm"),
           ],
         },
-        {
+   /*     {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            'Content-Type': 'application-json',
           },
-        }
+        }*/
       );
       dispatch(hideLoading());
       if (res.data.success) {
@@ -45,7 +45,7 @@ const Profile = () => {
       }
     } catch (error) {
       dispatch(hideLoading());
-      console.log(error);
+      // console.log(error);
       message.error("Somthing Went Wrrong ");
     }
   };
@@ -55,17 +55,17 @@ const Profile = () => {
       const { data } = await axios.post(
         "/api/v1/doctor/getDoctorInfo",
         { userId: params.id },
-        {
+   /*     {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            'Content-Type': 'application-json',
           },
-        }
+        }*/
       );
       if (data.success) {
         setDoctor(data.data);
       }
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 

@@ -4,11 +4,12 @@ const jwt = require("jsonwebtoken");
 const doctorModel = require("../models/doctorModel");
 const appointmentModel = require("../models/appointmentModel");
 const dayjs = require("dayjs");
+
 const registerController = async (req, res) => {
   try {
     const existingUser = await userModel.findOne({ email: req.body.email });
     if (existingUser) {
-      console.log("User Already Exists");
+      // console.log("User Already Exists");
       res.status(200).send({
         success: false,
         message: "User Already Exists",
@@ -16,7 +17,7 @@ const registerController = async (req, res) => {
     }
 
     if (req.body.password !== req.body.secondPassword) {
-      console.log("Password and confirm Password do not match");
+      // console.log("Password and confirm Password do not match");
       return res.status(200).send({
         success: false,
         message: "Passwords do not match",
@@ -35,19 +36,19 @@ const registerController = async (req, res) => {
       userModel
         .create(req.body)
         .then(() => {
-          console.log("Added to DB");
+          // console.log("Added to DB");
           return res.status(201).send({
             success: true,
             message: `Registered Successfully`,
           });
         })
         .catch((err) => {
-          console.log(`Error in adding to DB, ${err}`);
+          // console.log(`Error in adding to DB, ${err}`);
           return;
         });
     }
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.status(500).send({
       success: false,
       message: `Register Controller ${error.message}`,
@@ -74,13 +75,18 @@ const loginController = async (req, res) => {
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
       expiresIn: "1d",
     });
+    res.cookie("jwttoken", token, {
+      httpOnly: true,
+      secure: true,
+      maxAge: 10 * 24 * 60 * 60 * 1000,
+    });
     res.status(200).send({
       success: true,
       message: "Login Successful",
       token,
     });
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.status(500).send({
       success: false,
       message: `Login Controller ${error.message}`,
@@ -98,7 +104,7 @@ const authController = async (req, res) => {
         message: `user not found`,
       });
     } else {
-      // console.log(req.body.userId);
+      // // console.log(req.body.userId);
       return res.status(200).send({
         success: true,
         message: `auth successfull`,
@@ -106,7 +112,7 @@ const authController = async (req, res) => {
       });
     }
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.status(500).send({
       success: false,
       message: `auth error`,
@@ -151,7 +157,7 @@ const applyDoctorController = async (req, res) => {
       });
     }
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.status(500).send({
       success: false,
       error,
@@ -176,7 +182,7 @@ const getAllNotificationController = async (req, res) => {
       data: updatedUser,
     });
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.status(500).send({
       success: false,
       message: "Error in notification",
@@ -198,7 +204,7 @@ const deleteAllNotificationController = async (req, res) => {
       data: updatedUser,
     });
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.status(500).send({
       success: false,
       message: "Error in deleting notification",
@@ -216,7 +222,7 @@ const getAllDoctorsController = async (req, res) => {
       data: doctors,
     });
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.status(500).send({
       success: false,
       message: "Error in fetching doctors",
@@ -231,7 +237,7 @@ const bookAppointmentController = async (req, res) => {
     //   format: "DD-MM-YYYY",
     //   locale: "en",
     // });
-    // console.log("Parsed date:", parsedDate);
+    // // console.log("Parsed date:", parsedDate);
     // req.body.date = parsedDate.toISOString();
 
     // const parsedTime = dayjs(req.body.time, {
@@ -239,7 +245,7 @@ const bookAppointmentController = async (req, res) => {
     //   locale: "en",
     // });
     // req.body.time = parsedTime.toISOString();
-    // console.log("Parsed time:", parsedTime);
+    // // console.log("Parsed time:", parsedTime);
     // req.body.date = dayjs(req.body.date, "DD-MM-YYYY").toISOString();
     // req.body.time = dayjs(req.body.time, "HH:mm").toISOString();
 
@@ -260,7 +266,7 @@ const bookAppointmentController = async (req, res) => {
       data: newAppointment,
     });
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.status(500).send({
       success: false,
       message: "Error in booking appointments",
@@ -298,7 +304,7 @@ const bookingAvailabilityController = async (req, res) => {
       },
     });
 
-    console.log(appointments);
+    // console.log(appointments);
 
     if (appointments.length > 0) {
       return res.status(200).send({
@@ -312,7 +318,7 @@ const bookingAvailabilityController = async (req, res) => {
       });
     }
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.status(500).send({
       success: false,
       message: "Error in booking",
@@ -332,7 +338,7 @@ const userAppointmentsController = async (req, res) => {
       data: appointments,
     });
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.status(500).send({
       success: false,
       message: "Error in user appointments",
@@ -372,7 +378,7 @@ const userAccountsController = async (req, res) => {
       data: user,
     });
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.status(500).send({
       success: false,
       message: "Error in updating account",
@@ -380,6 +386,22 @@ const userAccountsController = async (req, res) => {
     });
   }
 };
+
+const userLogoutController = async(req, res)=>{
+  try {
+    res.clearCookie("jwttoken");
+    res.status(200).send({
+      success: true,
+      message: "Logged Out Successfully",
+    });
+  } catch (error) {
+    res.status(500).send({
+      success: false,
+      message: "Error in logging out",
+      error,
+    });
+  }
+}
 
 module.exports = {
   loginController,
@@ -393,4 +415,5 @@ module.exports = {
   bookingAvailabilityController,
   userAppointmentsController,
   userAccountsController,
+  userLogoutController
 };

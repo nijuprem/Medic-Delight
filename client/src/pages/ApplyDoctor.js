@@ -27,11 +27,11 @@ const ApplyDoctor = () => {
             dayjs(values?.timings[1]).format("HH:mm"),
           ],
         },
-        {
+   /*     {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            'Content-Type': 'application-json',
           },
-        }
+        }*/
       );
       dispatch(hideLoading());
       if (res.data.success) {
@@ -42,7 +42,7 @@ const ApplyDoctor = () => {
       }
     } catch (error) {
       dispatch(hideLoading());
-      console.log(error);
+      // console.log(error);
       message.error("Somthing Went Wrrong ");
     }
   };

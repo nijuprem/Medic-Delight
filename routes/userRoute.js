@@ -11,6 +11,7 @@ const {
   bookingAvailabilityController,
   userAppointmentsController,
   userAccountsController,
+  userLogoutController,
 } = require("../controllers/userCtrl");
 const authMiddleware = require("../middlewares/authMiddleware");
 
@@ -19,7 +20,7 @@ const router = express.Router();
 router.post("/login", loginController);
 router.post("/register", registerController);
 router.post("/getUserData", authMiddleware, authController);
-router.post("/register", registerController);
+// router.post("/register", registerController);
 router.post("/apply-doctor", authMiddleware, applyDoctorController);
 router.post(
   "/get-all-notification",
@@ -47,5 +48,7 @@ router.get("/userAppointments", authMiddleware, userAppointmentsController);
 
 //USer Account Details
 router.post("/userAccounts", authMiddleware, userAccountsController);
+
+router.post("/logout", authMiddleware, userLogoutController);
 
 module.exports = router;
